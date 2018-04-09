@@ -3,7 +3,7 @@ const expect = require('expect');
 const { Users } = require('./users');
 
 describe('Users', () => {
-    
+
     var users;
 
     beforeEach(() => {
