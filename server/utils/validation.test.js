@@ -1,7 +1,10 @@
+// expect
 var expect = require('expect');
 
+// isRealString function
 var { isRealString } = require('./validation');
 
+// isRealString tests
 describe('isRealString', () => {
     it('should reject non string values', () => {
         var str = 1;

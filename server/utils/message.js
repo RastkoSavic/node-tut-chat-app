@@ -1,5 +1,12 @@
+// moment.js
 var moment = require('moment');
 
+/**
+ * 
+ * @param {string} from - Represents username 
+ * @param {string} text - Represents message content
+ * @description Returns a message object
+ */
 var generateMessage = (from, text) => {
     return {
         from,
@@ -8,6 +15,14 @@ var generateMessage = (from, text) => {
     };
 };
 
+/**
+ * 
+ * @param {string} from - Represents username
+ * @param {string} latitude 
+ * @param {string} longitude 
+ * @description Creates a Google Maps url, returns a Location Message Object
+ * 
+ */
 var generateLocationMessage = (from, latitude, longitude) => {
     return {
         from,

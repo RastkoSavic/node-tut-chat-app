@@ -1,11 +1,16 @@
+// expect
 const expect = require('expect');
 
+
+// Users class
 const { Users } = require('./users');
 
+// Users Tests
 describe('Users', () => {
 
     var users;
 
+    // Mock data for tests
     beforeEach(() => {
         users = new Users();
         users.users = [{
@@ -23,11 +28,12 @@ describe('Users', () => {
         }];
     });
 
+    // addUser Test
     it('should add new user', () => {
         var users = new Users();
         var user = {
             id: '123',
-            name: 'Andrew',
+            name: 'Rastko',
             room: 'The Office Fans'
         };
         var resUser = users.addUser(user.id, user.name, user.room);
@@ -35,6 +41,7 @@ describe('Users', () => {
         expect(users.users).toEqual([user]);
     });
 
+    // removeUser Tests
     it('should remove a user', () => {
         var userId = '1';
         var user = users.removeUser(userId);
@@ -51,6 +58,7 @@ describe('Users', () => {
         expect(users.users.length).toBe(3);
     });
 
+    // getUser tests
     it('should find user', () => {
         var userId = '2';
         var user = users.getUser(userId);
@@ -65,6 +73,7 @@ describe('Users', () => {
         expect(user).toNotExist();
     });
 
+    // getUserList tests
     it('should return names for node course', () => {
         var userList = users.getUserList('Node Course');
 

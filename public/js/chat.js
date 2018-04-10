@@ -1,6 +1,8 @@
 var socket = io();
 
+// Scroll to bottom when user near bottom
 function scrollToBottom() {
+
     // Selectors
     var messages = $('#messages');
     var newMessage = messages.children('li:last-child');
@@ -17,8 +19,11 @@ function scrollToBottom() {
     }
 }
 
+// Connect Event
 socket.on('connect', function () {
     var params = $.deparam(window.location.search);
+
+    // Emit Join params
     socket.emit('join', params, function (err) {
         if (err) {
             alert(err);
@@ -29,10 +34,12 @@ socket.on('connect', function () {
     });
 });
 
+// Disconect Event
 socket.on('disconnect', function () {
     console.log('Disconnected from server');
 });
 
+// Update User List Event
 socket.on('updateUserList', function (users) {
     var ol = $('<ol></ol>');
 
@@ -43,6 +50,7 @@ socket.on('updateUserList', function (users) {
     $('#users').html(ol);
 });
 
+// New Message Event
 socket.on('newMessage', function (message) {
     var formattedTime = moment(message.createdAt).format('h:mm a');
     var template = $('#message-template').html();
@@ -56,6 +64,7 @@ socket.on('newMessage', function (message) {
     scrollToBottom();
 });
 
+// New Location Message Event
 socket.on('newLocationMessage', function (message) {
     var formattedTime = moment(message.createdAt).format('h:mm a');
     var template = $('#location-message-template').html();
@@ -69,11 +78,13 @@ socket.on('newLocationMessage', function (message) {
     scrollToBottom();
 });
 
+// Message Form
 $('#message-form').on('submit', function (e) {
     e.preventDefault();
 
     var messageTextbox = $('[name=message]');
 
+    // Emit Create Message
     socket.emit('createMessage', {
         text: messageTextbox.val()
     }, function () {
@@ -81,6 +92,8 @@ $('#message-form').on('submit', function (e) {
     });
 });
 
+
+// Location Button Click
 var locationButton = $('#send-location');
 
 locationButton.on('click', function () {
@@ -91,6 +104,7 @@ locationButton.on('click', function () {
 
     locationButton.attr('disabled', 'disabled').text('Sending Location...');
 
+    // Emit Create Location Message
     navigator.geolocation.getCurrentPosition(function (position) {
         socket.emit('createLocationMessage', {
             latitude: position.coords.latitude,

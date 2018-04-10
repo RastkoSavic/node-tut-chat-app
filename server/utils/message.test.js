@@ -1,10 +1,13 @@
+// expect
 var expect = require('expect');
 
+// Functions to test
 var { generateMessage, generateLocationMessage } = require('./message')
 
+// generateMessage test
 describe('generateMessage', () => {
     it('should generate the correct message object', () => {
-        var from = 'Mike';
+        var from = 'Rastko';
         var text = 'Hello everybody!';
         var message = generateMessage(from, text);
 
@@ -14,6 +17,7 @@ describe('generateMessage', () => {
     });
 });
 
+// generateLocationMessage test
 describe('generateLocationMessage', () => {
     it('should generate correct location object', () => {
         var from = 'Admin';
