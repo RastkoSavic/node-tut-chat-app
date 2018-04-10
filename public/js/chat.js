@@ -35,6 +35,7 @@ socket.on('connect', function () {
 // Disconect Event
 socket.on('disconnect', function () {
     // TODO: make disconnect message
+    alert('Disconnected from the server');
 });
 
 // Update User List Event
@@ -42,7 +43,7 @@ socket.on('updateUserList', function (users) {
     var ol = $('<ol></ol>');
 
     users.forEach(function (user) {
-        ol.append($('<li></li').text(user));
+        ol.append($('<li></li>').text(user));
     });
 
     $('#users').html(ol);
