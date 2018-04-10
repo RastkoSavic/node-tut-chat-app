@@ -28,15 +28,13 @@ socket.on('connect', function () {
         if (err) {
             alert(err);
             window.location.href = '/';
-        } else {
-            console.log('No error');
         }
     });
 });
 
 // Disconect Event
 socket.on('disconnect', function () {
-    console.log('Disconnected from server');
+    // TODO: make disconnect message
 });
 
 // Update User List Event
@@ -113,7 +111,7 @@ locationButton.on('click', function () {
 
         locationButton.removeAttr('disabled').text('Send Location');
     }, function () {
-        locationButton.removeAttr('disabled').text('Send Location');;
+        locationButton.removeAttr('disabled').text('Send Location');
         alert('Unable to fetch location.');
     });
 });

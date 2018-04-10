@@ -36,7 +36,7 @@ describe('Users', () => {
             name: 'Rastko',
             room: 'The Office Fans'
         };
-        var resUser = users.addUser(user.id, user.name, user.room);
+        users.addUser(user.id, user.name, user.room);
 
         expect(users.users).toEqual([user]);
     });
