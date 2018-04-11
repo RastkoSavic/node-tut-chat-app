@@ -60,6 +60,7 @@ socket.on('newMessage', function (message) {
     });
 
     $('#messages').append(html);
+
     scrollToBottom();
 });
 
@@ -74,6 +75,7 @@ socket.on('newLocationMessage', function (message) {
     });
 
     $('#messages').append(html);
+
     scrollToBottom();
 });
 
@@ -96,7 +98,6 @@ $('#message-form').on('submit', function (e) {
 var locationButton = $('#send-location');
 
 locationButton.on('click', function () {
-
     if (!navigator.geolocation) {
         return alert('Geolocation not supported on your browser.');
     }
@@ -113,6 +114,7 @@ locationButton.on('click', function () {
         locationButton.removeAttr('disabled').text('Send Location');
     }, function () {
         locationButton.removeAttr('disabled').text('Send Location');
+
         alert('Unable to fetch location.');
     });
 });

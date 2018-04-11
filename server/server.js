@@ -24,9 +24,9 @@ var users = new Users();
 // Express Setup
 app.use(express.static(publicPath));
 
-// Connection Even
+// Connection Event
 io.on('connection', (socket) => {
-    
+
     // Join Event
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.room)) {
@@ -41,7 +41,8 @@ io.on('connection', (socket) => {
         // Join Emits
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
         socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Chat App'));
-        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
+        socket.broadcast.to(params.room)
+            .emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
 
         callback();
     });
@@ -64,7 +65,8 @@ io.on('connection', (socket) => {
         var user = users.getUser(socket.id);
 
         // Emit New Location Message
-        io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+        io.to(user.room)
+            .emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
     });
 
     // Disconnect Event

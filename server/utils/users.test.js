@@ -7,12 +7,12 @@ const { Users } = require('./users');
 
 // Users Tests
 describe('Users', () => {
-
     var users;
 
     // Mock data for tests
     beforeEach(() => {
         users = new Users();
+
         users.users = [{
             id: '1',
             name: 'Mike',
